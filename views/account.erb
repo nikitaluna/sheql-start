@@ -6,10 +6,13 @@
             
             <div class="accordion round-corners light-pink-background">
                 <div class="accordion-headline">
-                    <h4>Name</h4>
+                    <h4><%=@user.name %>&apos;s Info</h4>
                 </div>
                 <div class="accordion-content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Name: <%=@user.name%> </br> 
+                    Email: <%=@user.email%> </br>
+                    Gender: <%=@user.gender%> </br> 
+                    Date of Birth: <%=@user.date_of_birth%>
                 </div>
             </div>
             
@@ -19,9 +22,11 @@
                 </div>
                 <div class="accordion-content">
                 <ul>
-                <%  @user.allergies.each do |allergy| %> 
-                    <li> <%=allergy.name %> </li>
-                    <% end%>
+                  <% if @user.allergies.present? %>
+                    <% @user.allergies.each do |allergy| %>
+                      <li> <%=allergy.name%></li>
+                      <%end%>
+                   <% end %>
                 </ul> 
                 </div>
             </div>
@@ -30,10 +35,10 @@
                 <div class="accordion-headline">
                     <h4>Symptoms</h4>
                 </div>
-                <div class="accordion-content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    Symptom Date:
-                </div>
+              <div class="accordion-content">
+                Symptoms: <%=@visit.symptom%> </br>
+                Symptom Date: <%=@visit.symptom_date%> </br>
+              </div>
             </div>
             
         </div>

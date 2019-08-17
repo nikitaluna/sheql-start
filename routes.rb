@@ -16,15 +16,32 @@ get '/account/new' do
   erb :"new_account"
 end
 
-# post '/account' do
-#   @user = User.first # later this will be the logged in user
+post '/account' do
+   @user = User.first || User.new  # later this will be the logged in user
+   @user.name = params[:first_name]
+   @user.email = params[:email]
+   @user.gender = params[:gender]
+   @user.date_of_birth = params[:date_of_birth]
+   @user.save
+
+   @visit = @user.visits.first || @user.visits.new
+   @visit.symptom = params[:symptoms]
+   @visit.symptom_date = Date.today
+
+
+
+   @allergies = params[:allergy]
+   @user.allergies.clear
+   if @allergies.present?
+		   @allergies.each do |allergy|
+			@user.allergies << Allergy.find(allergy.to_i)
+			end
+	end
+
 #   # Run update of the account
 #   # You will have PARAMS (from the user)
-#   @user = User.new 
-#   @allergies = Allergy.new 
-#   @symptoms = Visit.new
-#   erb :"account"
-# end
+  erb :"account"
+end
 
 
 

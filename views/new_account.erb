@@ -8,30 +8,30 @@
                         <div class="third">
                             <div class="small-padding">
                                 <h3>Fill Out This Form</h3>
-                                <form>
+                                <form method="POST" action="/account" >
+   
                                     <label>Name *</label>
-                                    <input type="text" placeholder="Emily Doe">
+                                    <input name="first_name" value="<%=@user.name%>" type="text" placeholder="Emily Doe">
                                     
                                     <label>Email *</label>
-                                    <input type="email" placeholder="emily@example.com">
+                                    <input name="email" value="<%=@user.email%>" type="email" placeholder="emily@example.com">
                                     
-                                    <label>Age *</label>
-                                    <input type="number" placeholder="13">
+
                                     
                                     <label>Gender *</label>
-                                    <input type="text" placeholder="Female">
+                                    <input name="gender" value="<%=@user.gender%>" type="text" placeholder="Female">
 
    
                                     <label>Allergies *</label><br>
                                     <% Allergy.all.each do |allergy| %>
-                                      <input name="<%=allergy.name%>" value="<%=allergy.id%>" type="checkbox"> <%=allergy.name %> <br>       
+                                      <input name="allergy[]" value="<%=allergy.id%>" type="checkbox"> <%=allergy.name %> <br>       
              
                                       <% end %>                             
                                     <label>Symptoms</label>
-                                    <textarea></textarea>
+                                    <textarea name="symptoms"></textarea>
                                     
                                     <label>Date of Birth</label>
-                                    <input type="date"
+                                    <input name ="date_of_birth" value="<%=@user.date_of_birth%>" type="date"
                                         value="2018-07-22"
                                         min="1900-01-01" max="2018-12-31">
                                     
